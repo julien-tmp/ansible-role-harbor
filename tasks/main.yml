@@ -12,7 +12,7 @@
   file:
     path: "{{ harbor_install_dir }}"
     state: directory
-    mode: o+r
+    mode: 0750
   when:
     - not harbor_folder_st.stat.exists or (harbor_folder_st.stat.isdir is defined and not harbor_folder_st.stat.isdir)
 
@@ -22,6 +22,7 @@
     src: /tmp/harbor.tgz
     dest: "{{ harbor_install_dir }}"
     creates: "{{ harbor_install_dir }}/harbor"
+    mode: 0750
   when:
     - not harbor_folder_st.stat.exists or (harbor_folder_st.stat.isdir is defined and not harbor_folder_st.stat.isdir)
 
